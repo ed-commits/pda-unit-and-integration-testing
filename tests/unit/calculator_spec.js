@@ -64,4 +64,23 @@ describe('calculator', function () {
     assert.equal(calculator.runningTotal, 45);
   })
 
+  it('clears the running total without affecting the calculation', function() {
+    calculator.runningTotal = 0;
+    calculator.newTotal = true;
+    // Input 100
+    calculator.numberClick('1');
+    calculator.numberClick('0');
+    calculator.numberClick('0');
+    // Choose addition
+    calculator.operatorClick('+');
+    // Input 5
+    calculator.numberClick('5');
+    // Clear that
+    calculator.clearClick();
+    // Add 2 instead
+    calculator.numberClick('2');
+    calculator.operatorClick('=');
+    assert.equal(calculator.runningTotal, 102);
+  })
+
 });
