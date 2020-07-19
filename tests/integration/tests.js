@@ -46,4 +46,25 @@ describe('calculator functionality', function() {
     expect(running_total.getAttribute('value')).to.eventually.equal('33')
   })
 
+  it('can chain multiple operations together', function(){
+    running_total = element(by.css('#running_total'))
+    // Enter the number 5
+    element(by.css('#number5')).click();
+    // Press *
+    element(by.css('#operator_multiply')).click();
+    // Enter the number 3
+    element(by.css('#number3')).click();
+    // Press *
+    element(by.css('#operator_multiply')).click();
+    // Enter the number 2
+    element(by.css('#number2')).click();
+    // Press -
+    element(by.css('#operator_subtract')).click();
+    // Enter the number 8
+    element(by.css('#number8')).click();
+    // Press =
+    element(by.css('#operator_equals')).click();
+    expect(running_total.getAttribute('value')).to.eventually.equal('22')
+  })
+
 });
