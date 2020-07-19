@@ -35,4 +35,15 @@ describe('calculator', function () {
     assert.equal(calculator.runningTotal, 3);
   })
 
+  it('concatenates multiple number button clicks', function() {
+    calculator.runningTotal = 0;
+    calculator.newTotal = true;
+    calculator.numberClick('3');
+    calculator.numberClick('4');
+    calculator.numberClick('5');
+    calculator.numberClick('1');
+    calculator.numberClick('7');
+    assert.equal(calculator.runningTotal, 34517);
+  })
+
 });
