@@ -100,4 +100,24 @@ describe('calculator functionality', function() {
     expect(running_total.getAttribute('value')).to.eventually.equal('0.125')
   })
 
+  it('supports huge numbers', function(){
+    running_total = element(by.css('#running_total'))
+    // Enter the number 1000000000000000
+    element(by.css('#number1')).click();
+    for(i = 0; i < 15; i++) {
+      element(by.css('#number0')).click();
+    }
+    // Press *
+    element(by.css('#operator_multiply')).click();
+    // Enter the same number
+    element(by.css('#number1')).click();
+    for(i = 0; i < 15; i++) {
+      element(by.css('#number0')).click();
+    }
+    // Press =
+    element(by.css('#operator_equals')).click();
+    // Such a huge number will be expressed in scientific notation with an exponential
+    expect(running_total.getAttribute('value')).to.eventually.equal('1e+30')
+  })
+
 });
