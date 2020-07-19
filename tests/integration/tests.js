@@ -67,4 +67,37 @@ describe('calculator functionality', function() {
     expect(running_total.getAttribute('value')).to.eventually.equal('22')
   })
 
+  it('supports large negative numbers', function(){
+    running_total = element(by.css('#running_total'))
+    // Enter the number 1
+    element(by.css('#number1')).click();
+    // Press -
+    element(by.css('#operator_subtract')).click();
+    // Enter the number 99999999
+    element(by.css('#number9')).click();
+    element(by.css('#number9')).click();
+    element(by.css('#number9')).click();
+    element(by.css('#number9')).click();
+    element(by.css('#number9')).click();
+    element(by.css('#number9')).click();
+    element(by.css('#number9')).click();
+    element(by.css('#number9')).click();
+    // Press =
+    element(by.css('#operator_equals')).click();
+    expect(running_total.getAttribute('value')).to.eventually.equal('-99999998')
+  })
+
+  it('supports decimal numbers', function(){
+    running_total = element(by.css('#running_total'))
+    // Enter the number 1
+    element(by.css('#number1')).click();
+    // Press -
+    element(by.css('#operator_divide')).click();
+    // Enter the number 8
+    element(by.css('#number8')).click();
+    // Press =
+    element(by.css('#operator_equals')).click();
+    expect(running_total.getAttribute('value')).to.eventually.equal('0.125')
+  })
+
 });
