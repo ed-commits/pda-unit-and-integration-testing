@@ -31,4 +31,19 @@ describe('calculator functionality', function() {
     expect(running_total.getAttribute('value')).to.eventually.equal('1234567890')
   })
 
+  it('has arithmetical operations that update the display with the result of the operation', function(){
+    running_total = element(by.css('#running_total'))
+    // Enter the number 11
+    element(by.css('#number1')).click();
+    element(by.css('#number1')).click();
+    // Press +
+    element(by.css('#operator_add')).click();
+    // Enter the number 22
+    element(by.css('#number2')).click();
+    element(by.css('#number2')).click();
+    // Press =
+    element(by.css('#operator_equals')).click();
+    expect(running_total.getAttribute('value')).to.eventually.equal('33')
+  })
+
 });
