@@ -46,4 +46,22 @@ describe('calculator', function () {
     assert.equal(calculator.runningTotal, 34517);
   })
 
+  it('chains multiple operations together', function() {
+    calculator.runningTotal = 0;
+    calculator.newTotal = true;
+    calculator.numberClick('1');
+    calculator.operatorClick('+');
+    calculator.numberClick('2');
+    calculator.operatorClick('+');
+    calculator.numberClick('3');
+    calculator.operatorClick('+');
+    calculator.numberClick('4');
+    calculator.operatorClick('+');
+    calculator.numberClick('5');
+    calculator.operatorClick('*');
+    calculator.numberClick('3');
+    calculator.operatorClick('=');
+    assert.equal(calculator.runningTotal, 45);
+  })
+
 });
