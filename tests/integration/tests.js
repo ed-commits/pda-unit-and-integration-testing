@@ -91,7 +91,7 @@ describe('calculator functionality', function() {
     running_total = element(by.css('#running_total'))
     // Enter the number 1
     element(by.css('#number1')).click();
-    // Press -
+    // Press /
     element(by.css('#operator_divide')).click();
     // Enter the number 8
     element(by.css('#number8')).click();
@@ -118,6 +118,19 @@ describe('calculator functionality', function() {
     element(by.css('#operator_equals')).click();
     // Such a huge number will be expressed in scientific notation with an exponential
     expect(running_total.getAttribute('value')).to.eventually.equal('1e+30')
+  })
+
+  it('detects division by zero', function(){
+    running_total = element(by.css('#running_total'))
+    // Enter the number 1
+    element(by.css('#number1')).click();
+    // Press /
+    element(by.css('#operator_divide')).click();
+    // Enter the number 0
+    element(by.css('#number0')).click();
+    // Press =
+    element(by.css('#operator_equals')).click();
+    expect(running_total.getAttribute('value')).to.eventually.equal('ERROR 1: UNDEF')
   })
 
 });
